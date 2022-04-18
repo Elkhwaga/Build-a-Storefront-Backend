@@ -1,0 +1,49 @@
+{
+  "name": "creating-an-api-with-postgresql-and-express-project-starter-master",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "start": "npm run build && node dist/server.js",
+    "build": "rm -rf ./dist && npx tsc",
+    "drop": "db-migrate db:drop store_test",
+    "create": "db-migrate -e create db:create store_test",
+    "migrate-up": "db-migrate up --env test",
+    "test": "npm run drop && npm run create && npm run migrate-up && npm run build && ENV=test jasmine && npm run drop",
+    "test:unix": "npm run drop && npm run create && npm run migrate-up && npm run build && export ENV=test jasmine && npm run drop",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/pg": "^8.6.5",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jasmine": "^4.0.2",
+    "jasmine-spec-reporter": "^7.0.0",
+    "node-ts": "^5.1.2",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3"
+  }
+}
